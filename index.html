@@ -15,14 +15,11 @@
     <p>Experiment</p>
   </div>
 
-  <script src="scripts/three.js"></script>
+  <script src="scripts/three.min.js"></script>
   <script src="scripts/detector.js"></script>
-  <!-- <script src="scripts/stats.min.js"></script> -->
 
   <script>
     if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-    
-    // var container, stats;
     
     var camera, scene, renderer;
     
@@ -59,9 +56,6 @@
       renderer.setPixelRatio( window.devicePixelRatio );
       renderer.setSize( window.innerWidth, window.innerHeight );
       container.appendChild( renderer.domElement );
-    
-      // stats = new Stats();
-      // container.appendChild( stats.dom );
     
       document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     
