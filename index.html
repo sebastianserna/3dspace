@@ -52,8 +52,8 @@
       var loader = new THREE.JSONLoader();
     
       // Blender Objects
-      loader.load( "objects/object1.js", createScene1 );
-      loader.load( "objects/object2.js", createScene2 );
+      loader.load( "objects/object1.json", createScene1 );
+      loader.load( "objects/object2.json", createScene2 );
     
       renderer = new THREE.WebGLRenderer( { antialias: true } );
       renderer.setPixelRatio( window.devicePixelRatio );
