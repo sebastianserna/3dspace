@@ -35,24 +35,22 @@
     
     function init() {
     
-      // Canvas parent
       container = document.getElementById( 'scene-canvas' );
     
-      // Camera
       camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
       camera.position.z = 1800;
     
-      // Scene
       scene = new THREE.Scene();
     
-      // Light
-      light = new THREE.DirectionalLight( 0xffffff, 3 );
-      light.position.set( 0, 1, 0 ).normalize();
+      light = new THREE.DirectionalLight( 0xffffff );
+      light.position.set( 0, 0, 1 ).normalize();
       scene.add( light );
     
-      // 3D model
       var loader = new THREE.JSONLoader();
-      loader.load( "models/planet.json", createScene );
+    
+      // Blender Objects
+      loader.load( "models/object1.json", createScene1 );
+      loader.load( "models/object2.json", createScene2 );
     
       renderer = new THREE.WebGLRenderer( { antialias: true } );
       renderer.setPixelRatio( window.devicePixelRatio );
@@ -76,17 +74,24 @@
       renderer.setSize( window.innerWidth, window.innerHeight );
     
     }
-
     
-    function createScene( geometry, materials ) {
+    function createScene1( geometry, materials ) {
     
       mesh = new THREE.Mesh( geometry, materials );
-      mesh.position.x = 0;
-      mesh.scale.x = mesh.scale.y = mesh.scale.z = 300;
+      mesh.position.x = 400;
+      mesh.scale.x = mesh.scale.y = mesh.scale.z = 250;
       scene.add( mesh );
     
     }
     
+    function createScene2( geometry, materials ) {
+    
+      mesh2 = new THREE.Mesh( geometry, materials );
+      mesh2.position.x = - 400;
+      mesh2.scale.x = mesh2.scale.y = mesh2.scale.z = 250;
+      scene.add( mesh2 );
+    
+    }
     
     function onDocumentMouseMove( event ) {
     
@@ -115,6 +120,13 @@
     
         mesh.rotation.x += 0.01;
         mesh.rotation.y += 0.01;
+      }
+    
+      if ( mesh2 ) {
+    
+        mesh2.rotation.x += 0.01;
+        mesh2.rotation.y += 0.01;
+    
       }
     
       renderer.render( scene, camera );
